@@ -1,31 +1,47 @@
 version: '3.4'
 
 services:
-  ecommerceapiproducts:
-    image: ecommerceapiproducts
+  ecommerce.api.products:
+    image: ${DOCKER_REGISTRY-}ecommerceapiproducts
     build:
       context: .
       dockerfile: ECommerce.Api.Products/Dockerfile
     ports:
       - "22496:22496"
-  ecommerceapicustomers:
-    image: ecommerceapicustomers
+    networks:
+      - shared-network
+  ecommerce.api.customers:
+    image: ${DOCKER_REGISTRY-}ecommerceapicustomers
     build:
       context: .
       dockerfile: ECommerce.Api.Customers/Dockerfile
     ports:
       - "40147:40147"
-  ecommerceapiorders:
-    image: ecommerceapiorders
+    networks:
+      - shared-network
+  ecommerce.api.orders:
+    image: ${DOCKER_REGISTRY-}ecommerceapiorders
     build:
       context: .
       dockerfile: ECommerce.Api.Orders/Dockerfile
     ports:
       - "51007:51007"
-  ecommerceapisearch:
-    image: ecommerceapisearch
+    networks:
+      - shared-network
+  ecommerce.api.search:
+    image: ${DOCKER_REGISTRY-}ecommerceapisearch
     build:
       context: .
       dockerfile: ECommerce.Api.Search/Dockerfile
     ports:
       - "5000:5000"
+    networks:
+      - shared-network
+    environment: 
+      - Services__Products=http://ecommerce.api.products:22496
+      - Services__Customers=http://ecommerce.api.customers:40147
+      - Services__Orders=http://ecommerce.api.orders:51007
+
+networks: 
+  shared-network:
+    external: true
