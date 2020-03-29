@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  ecommerceapi:
+    image: ecommerceapi
+    build:
+      context: .
+      dockerfile: ECommerce.Api.Products/Dockerfile
+    ports:
+      - "8080:22496"
