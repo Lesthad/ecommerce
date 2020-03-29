@@ -22,3 +22,10 @@ services:
       dockerfile: ECommerce.Api.Orders/Dockerfile
     ports:
       - "51007:51007"
+      ecommerceapisearch:
+    image: ecommerceapisearch
+    build:
+      context: .
+      dockerfile: ECommerce.Api.Search/Dockerfile
+    ports:
+      - "5000:5000"
