@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+WORKDIR /app
+EXPOSE 40147
+ENV ASPNETCORE_URLS=http://+:40147
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+WORKDIR /src
+COPY ["ECommerce.Api.Customers/ECommerce.Api.Customers.csproj", "ECommerce.Api.Customers/"]
+RUN dotnet restore "ECommerce.Api.Customers/ECommerce.Api.Customers.csproj"
+COPY . .
+WORKDIR "/src/ECommerce.Api.Customers"
+RUN dotnet build "ECommerce.Api.Customers.csproj" -c Release -o /app/build
+
+FROM build AS publish
+RUN dotnet publish "ECommerce.Api.Customers.csproj" -c Release -o /app/publish
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "ECommerce.Api.Customers.dll"]

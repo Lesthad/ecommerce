@@ -1,15 +1,27 @@
 version: '3.4'
 
 services:
-  ecommerceapi:
-    image: ecommerceapi
+  ecommerceapiproducts:
+    image: ecommerceapiproducts
     build:
       context: .
       dockerfile: ECommerce.Api.Products/Dockerfile
     ports:
-      - 80
+      - 22496
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80
+      - ASPNETCORE_URLS=http://+:22496
+    volumes:
+      - ~/.vsdbg:/remote_debugger:rw
+  ecommerceapicustomers:
+    image: ecommerceapicustomers
+    build:
+      context: .
+      dockerfile: ECommerce.Api.Customers/Dockerfile
+    ports:
+      - 40147
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:40147
     volumes:
       - ~/.vsdbg:/remote_debugger:rw
