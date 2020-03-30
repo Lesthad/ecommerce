@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1803 AS base
 WORKDIR /app
 EXPOSE 51007
 ENV ASPNETCORE_URLS=http://+:51007
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1803 AS build
 WORKDIR /src
 COPY ["ECommerce.Api.Orders/ECommerce.Api.Orders.csproj", "ECommerce.Api.Orders/"]
 RUN dotnet restore "ECommerce.Api.Orders/ECommerce.Api.Orders.csproj"
