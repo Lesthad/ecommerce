@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  products:
+    image: rcontrerasnet/ecommerceapiproducts:latest
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+  customers:
+    image: rcontrerasnet/ecommerceapicustomers:latest
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+  orders:
+    image: rcontrerasnet/ecommerceapiorders:latest
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80/http"
+  search:
+    image: rcontrerasnet/ecommerceapisearch:latest
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:80"
+    environment: 
+      - Services__Products=http://10.0.0.4/ecommerce/products/
+      - Services__Customers=http://10.0.0.4/ecommerce/customers/
+      - Services__Orders=http://10.0.0.4/ecommerce/orders/
