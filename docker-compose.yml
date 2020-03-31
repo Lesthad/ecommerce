@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ECommerce.Api.Products/Dockerfile
     ports:
-      - "22496:22496"
+      - "80"
     networks:
       - shared-network
   ecommerce.api.customers:
@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: ECommerce.Api.Customers/Dockerfile
     ports:
-      - "40147:40147"
+      - "80"
     networks:
       - shared-network
   ecommerce.api.orders:
@@ -25,7 +25,7 @@ services:
       context: .
       dockerfile: ECommerce.Api.Orders/Dockerfile
     ports:
-      - "51007:51007"
+      - "80"
     networks:
       - shared-network
   ecommerce.api.search:
@@ -34,13 +34,13 @@ services:
       context: .
       dockerfile: ECommerce.Api.Search/Dockerfile
     ports:
-      - "5000:5000"
+      - "5000:80"
     networks:
       - shared-network
     environment: 
-      - Services__Products=http://ecommerce.api.products:22496
-      - Services__Customers=http://ecommerce.api.customers:40147
-      - Services__Orders=http://ecommerce.api.orders:51007
+      - Services__Products=http://10.0.0.4/ecommercerc/products/
+      - Services__Customers=http://10.0.0.4/ecommercerc/customers/
+      - Services__Orders=http://10.0.0.4/ecommercerc/orders/
 
 networks: 
   shared-network:
