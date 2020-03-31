@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1803 AS base
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1909 AS base
 WORKDIR /app
 EXPOSE 80
 ENV ASPNETCORE_URLS=http://+:80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1803 AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1909 AS build
 WORKDIR /src
 COPY ["ECommerce.Api.Search/ECommerce.Api.Search.csproj", "ECommerce.Api.Search/"]
 RUN dotnet restore "ECommerce.Api.Search/ECommerce.Api.Search.csproj"
