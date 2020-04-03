@@ -23,7 +23,7 @@ namespace ECommerce.Api.Search.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SearchAsync(SearchTerm term)
+        public IActionResult SearchAsync(SearchTerm term)
         {
             return Ok("Im here");
             /*var result = await searchService.SearchAsync(term.CustomerId);
@@ -32,7 +32,7 @@ namespace ECommerce.Api.Search.Controllers
                 return Ok(result.SearchResults);
             }
 
-            return NotFound();
+            return NotFound();*/
         }
         
     }
