@@ -6,19 +6,19 @@ services:
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "20010:80/http"
+      - "80/http"
   customers:
     image: rcontrerasnet/ecommerceapicustomers:latest
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "20009:80/http"
+      - "80/http"
   orders:
     image: rcontrerasnet/ecommerceapiorders:latest
     environment: 
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
-      - "20008:80/http"
+      - "80/http"
   search:
     image: rcontrerasnet/ecommerceapisearch:latest
     ports:
